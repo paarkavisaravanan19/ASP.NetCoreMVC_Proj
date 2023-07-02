@@ -8,7 +8,11 @@ namespace Expense_Tracker.Models
         {
         }
 
+        
+
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Category> Categories { get; set; }
+
+
     }
 }
