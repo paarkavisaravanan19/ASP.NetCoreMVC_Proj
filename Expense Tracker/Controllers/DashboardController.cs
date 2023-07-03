@@ -18,7 +18,6 @@ namespace Expense_Tracker.Controllers
             //last 7 days transactions
             DateTime StartDate = DateTime.Today.AddDays(-6);
             DateTime EndDate = DateTime.Today;
-
             List<Transaction> SelectedTransactions = await _context.Transactions.Include(x=>x.Category)
                 .Where(y=>y.Date>= StartDate && y.Date <= EndDate).ToListAsync();
 
