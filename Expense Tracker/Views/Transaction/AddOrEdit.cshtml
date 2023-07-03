@@ -1,0 +1,54 @@
+﻿@model Expense_Tracker.Models.Transaction
+
+@{
+    ViewData["PageTitle"] = Model.TransactionId == 0 ? "Create a new Transaction" : "Edit Transaction";
+
+}
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="widget p-5" style="background-color: #212b36">
+            <form asp-action="AddOrEdit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" name="TransactionId" value="@Model.TransactionId" />
+                <div class="mb-3">
+                    @Html.EJS().DatePicker("date").Placeholder("Date").Format("MMM-dd-yy").Value(@Model.Date).FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Always).Render()
+                    <span asp-validation-for="Date" class="text-danger fs-6"></span>
+                </div>
+                <div class="mb-3">
+                    @(
+                        Html.EJS().DropDownListFor(model => model.CategoryId)
+                            .DataSource((IEnumerable<Category>)@ViewBag.Categories)
+                                .Fields(new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings { Value = "CategoryId", Text = "TitleWithIcon" }).AllowFiltering(allowFiltering:true).IgnoreAccent(ignoreAccent: true).FilterType(filterType: Syncfusion.EJ2.DropDowns.FilterType.Contains)
+                        .PopupHeight(popupHeight: "220px")
+                        
+                        .Render()
+                        )
+                    <span asp-validation-for="CategoryId" class="text-danger fs-6"></span>
+                </div>
+                <div class="mb-3">
+                    @Html.EJS().NumericTextBox("amount").Value(Model.Amount).Placeholder("Amount").FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Always).Min(0).Format("₹0").Render()
+                    <span asp-validation-for="Amount" class="text-danger fs-6"></span>
+                </div>
+                <div class="mb-3">
+                    @Html.EJS().TextBoxFor(model => model.Note, new { name = "Note" }).Placeholder("Add some Note").Value(@Model.Note).FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Always).Multiline(multiline: true).Render()
+                    <span asp-validation-for="Note" class="text-danger fs-6"></span>
+                </div>
+                
+                <div class="mb-3">
+                    @Html.EJS().Button("submit").Content("Submit").Type("submit").CssClass("e-success").Render()
+
+                </div>
+            </form>
+        </div>
+        
+    </div>
+    <div class="col-md-5">
+        <div class="widget h-100 d-flex justify-content-center align-items-center" >
+            <i class="fa-solid fa-money-bill-transfer fa-2xl"></i>
+
+        </div>
+</div>
+</div>
+
+

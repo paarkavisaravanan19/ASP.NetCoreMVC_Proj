@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Expense_Tracker.Models.Transaction>
+@{
+    ViewData["PageTitle"] = "Transactions";
+    ViewData["PageActionText"] = "+New Transaction";
+    ViewData["PageActionUrl"] = "/Transaction/AddOrEdit";
+}
+<div class="row">
+    <div class="col-md-7">
+        @Html.EJS().Grid("transactions").DataSource((IEnumerable<object>)Model).GridLines(Syncfusion.EJ2.Grids.GridLine.None).AllowSorting(allowSorting:true).AllowPaging(allowPaging: true).PageSettings(page=> { page.PageSizes(true); }).Columns(col =>
+        {
+        col.Field("CategoryTitleWithIcon").HeaderText("Category").Width("120").Add();
+        col.Field("Date").HeaderText("Date").Width("150").Format("MMM-dd-yy").Type(type: "date").TextAlign(Syncfusion.EJ2.Grids.TextAlign.Left).Add();
+        col.Field("FormattedAmount").HeaderText("Amount").Width("150").TextAlign(textAlign: Syncfusion.EJ2.Grids.TextAlign.Right).Add();
+        col.HeaderText("Actions").Width("120").Template("#actionColumnTemplate").Add();
+        }).Render()
+    </div>
+    <div class="col-md-5">
+        <div class="widget h-100 d-flex justify-content-center align-items-center" style="background-color: #212b36">
+            <i class="fa-solid fa-money-bill-transfer fa-2xl"></i>
+        </div>
+    </div>
+</div>
+<script id="actionColumnTemplate" type="text/x-template">
+    <div class="d-flex flex-row justify-content-start">
+        <a class="btn btn-sm no-a-decoration" href="/Transaction/AddOrEdit/${TransactionId}">
+            <i class="fa-solid fa-pen fa-lg">
+                </i>
+            </a>
+            <form action="/Transaction/Delete/${TransactionId}" method="post">
+    @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-sm btn-link no-a-decoration"
+                onclick="return confirm(&quot;Are you sure to delete this record?&quot;)">
+                    <i class="fa-solid fa-trash-can fa-lg text-danger"/>
+                    </button>
+                </form>
+        </div>
+</script>

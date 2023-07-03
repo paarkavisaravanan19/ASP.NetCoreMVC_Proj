@@ -11,6 +11,10 @@ html {
 html {
   position: relative;
   min-height: 100%;
+  font-family: "Inter";
+}
+*:not(.fa-solid):not(.fa):not(.e-icons){
+    font-family:"Inter";
 }
 
 body {
@@ -18,6 +22,78 @@ body {
   background-color: #12161d;
   color: #ffffff
 
+}
+
+/*Grid*/
+.e-grid {
+    border: 0;
+    border-radius: 5px;
+}
+
+    .e-grid .e-gridcontent, .e-grid .e-table {
+        background-color: #1a222b;
+    }
+
+    .e-grid .e-gridheader {
+        border: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        padding: 10px;
+        background-color: #222b33;
+    }
+
+        .e-grid .e-gridheader .e-headercell {
+            background-color: #222b33;
+        }
+
+    .e-grid .e-gridpager {
+        background-color: #1a222b;
+    }
+
+    .e-grid .e-pagercontainer {
+        border: none;
+        background-color: #1a222b;
+    }
+
+    .e-grid .e-content table {
+        padding: 0px 10px;
+    }
+
+.e-pagercontainer .e-icons {
+    background-color: #1a222b;
+    border: none !important;
+}
+
+.e-pager .e-numericitem {
+    color: #adb5bd;
+    background-color: #1a222b;
+    padding: 15px !important;
+}
+
+    .e-pager .e-numericitem:not(.e-currentitem) {
+        border: none !important;
+    }
+
+    .e-pager .e-numericitem:hover {
+        color: #fff;
+    }
+
+    .e-pager .e-numericitem.e-currentitem {
+        color: #fff;
+        border: none !important;
+        background-color: #31373d;
+    }
+
+.e-pager div.e-icons:not(.e-disable) {
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.e-grid .e-pager {
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .e-bigger {
@@ -31,6 +107,22 @@ body {
     width: 50%;
 }
 
+
+.btn:focus, .btn:active{
+    outline: none !important;
+    box-shadow: none;
+}
+
+.no-a-decoration, .no-a-decoration:hover{
+    text-decoration: none;
+    color: inherit;
+}
+
+/*BreadCrumb*/
+.e-breadcrumb a, .e-breadcrumb a:hover{
+    text-decoration: none !important;
+    color: inherit !important;
+}
 
 .custom-rbt-group label .e-btn {
     box-shadow: none !important;
@@ -48,4 +140,15 @@ body {
 .widget{
     border-radius: 1rem;
     background-color: #1a222b;
+}
+
+/*DashBoard*/
+.main-content{
+    margin-left: 290px;
+}
+
+#sidebar{
+    background-color: #12161d;
+    border-right : 1px dashed rgba(75, 82, 85,0.24);
+    padding: 10px 20px;
 }
