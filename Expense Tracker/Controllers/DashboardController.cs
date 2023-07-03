@@ -30,6 +30,7 @@ namespace Expense_Tracker.Controllers
             int TotalExpense = SelectedTransactions.Where(i => i.Category.Type == "Expense")
                 .Sum(j => j.Amount);
             ViewBag.TotalIncome = TotalExpense.ToString("₹0");
+
             //Balance Amount
             int Balance = TotalIncome - TotalExpense;
             ViewBag.Balance = Balance.ToString("₹0");
